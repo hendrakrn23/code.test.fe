@@ -1,0 +1,94 @@
+<div class="center-screen">
+  <div class="form">
+  <form id="registration_form" [formGroup]="registrationForm" (ngSubmit)="register()">
+    <h1>Registration</h1>
+    <div>
+      <input type="text"
+             placeholder="Mobile Phone Number *"
+             id="mobilePhone"
+             formControlName="mobilePhone"
+             class="form-control"
+             minlength="12"
+             maxlength="14"
+             required>
+      <div class="error" *ngIf="mobilePhone.hasError('pattern') && mobilePhone.touched">Please Enter valid Indonesian Phone Number</div>
+      <div class="error" *ngIf="mobilePhone.hasError('required') && mobilePhone.touched">Mobile Number is Required</div>
+    </div>
+    <div>
+      <input type="text"
+             placeholder="First Name *"
+             id="firstName"
+             formControlName="firstName"
+             class="form-control"
+             required/>
+      <div class="error" *ngIf="firstName.invalid && firstName.touched">First Name is Required</div>
+    </div>
+    <div>
+      <input type="text"
+             placeholder="Last Name *"
+             id="lastName"
+             formControlName="lastName"
+             class="form-control"
+             required/>
+      <div class="error" *ngIf="lastName.invalid && lastName.touched">Last Name is Required</div>
+    </div>
+    <div>
+      <label>Date of Birth</label>
+      <br>
+      <select name="dob-month" id="dob-month" formControlName="month" class="select">
+        <option value="Month" selected="selected">Month</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+      <select name="dob-date" id="dob-date" class="form-control" formControlName="date" class="select">
+        <option value="Date" selected="selected">Date</option>
+        <option *ngFor="let n of date" value="{{n}}">{{n}}</option>
+      </select>
+      <select name="dob-year" id="dob-year" class="form-control" formControlName="year" class="select">
+        <option value="Year" selected="selected">Year</option>
+        <option *ngFor="let n of year" value="{{n}}">{{n}}</option>
+      </select>
+    </div>
+    <div>
+      <input formControlName="gender" type="radio" id="male" value="M" class="radio" >
+      <label for="male">Male</label>
+      <input formControlName="gender" type="radio" id="female" value="F" class="radio">
+      <label for="female">Female</label>
+    </div>
+    <div>
+      <input type="text"
+             placeholder="Email *"
+             id="email"
+             formControlName="email"
+             class="form-control"
+             required/>
+      <div class="error" *ngIf="email.invalid && email.touched">Email is Required</div>
+    </div>
+    <div>
+      <button id="submit_form"
+              type="submit"
+              class="button"
+              [disabled]="isMobileNumberRegistered || isEmailRegistered || isRegisterButtonDisabled">Register</button>
+    </div>
+
+  </form>
+</div >
+  <div class="form"
+       *ngIf="showLoginButton">
+    <button id="login" class="button" (click)="goToHomePage('home')">Login</button>
+  </div>
+</div>
+
+
+
+
